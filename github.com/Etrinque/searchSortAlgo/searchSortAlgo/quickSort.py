@@ -1,6 +1,6 @@
 import random
-#
-'''Sorting Algorithm Practice'''
+
+'''Quick Sorting Algorithm Practice'''
 
 def test():
     test = []
@@ -40,7 +40,6 @@ def quickSort(items, left=None, right=None):
     print('Recursively calling quicksort on:',
            items[left:i], 'and ', items[i+1:right+1])
     
-    
     # run quick sort on each half of partition 
     quickSort(items, left, i - 1)
     quickSort(items, i + 1, right)
@@ -49,9 +48,34 @@ items = test()
 quickSort(items) 
 print("Final list is: \n", items)
 
-
 """======================================================================"""
 
 '''Iterative QuickSort Algorithm'''
-def iterativeQuickSort():
-    pass
+def partition(arg, low, high):
+    
+    i = (low - 1)
+    pivot = arg[high]
+
+    for j in range(low, high):
+        if arg[j] <= pivot:
+            i += 1
+            arg[i], arg[j] = arg[j], arg[i]
+
+    arg[i + 1], arg[high] = arg[high], arg[i + 1]
+    print('Creating partition, pivot value is: ', pivot)
+    return (i + 1)
+
+def iterQuickSort(arg, low, high):
+
+    if low < high:
+        pi = partition(arg, low, high)
+
+        iterQuickSort(arg, low, pi -1)
+        iterQuickSort(arg, pi+1, high)
+
+    print('QuickSorting Iteratively on:', arg)
+
+arg = test()
+n = len(arg)
+iterQuickSort(arg, 0, n-1)
+print('Final: ',arg)

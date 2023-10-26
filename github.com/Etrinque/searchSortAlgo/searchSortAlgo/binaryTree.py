@@ -1,6 +1,6 @@
 class Node():
     def __init__(self, val):
-        self.nodeVal = val
+        self.val = val
         self.left = None
         self.right = None
 
@@ -17,4 +17,23 @@ b.left = d
 b.right = e
 c.right = f
 
-print(Node(a))
+
+'''======================================'''
+
+'''ITERATIVE DEPTH FIRST TRAVERSAL'''
+
+def depthFirst(root):
+    if root == None:
+        result = []
+        return result
+    
+    stack = [ root ]
+    while len(stack) > 0:
+        currentNode = stack.pop()
+
+        if (currentNode.left): 
+            stack.append(currentNode.left)
+        if (currentNode.right): 
+            stack.append(currentNode.right)
+
+print(depthFirst(root))
